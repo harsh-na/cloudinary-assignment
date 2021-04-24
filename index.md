@@ -105,12 +105,14 @@ nodemon run dev
 
 ## Output
 
+**Cloudinary Dashboard**
+![Cloudinary Dashboard Webpage](cloudinary-dashboard.png?raw=true "Uploader Webpage")
+
 **Main Webpage**
 ![Main Webpage](uploader-landing-page.png?raw=true "Uploader Webpage")
 
 **Recieved files Webpage**
 ![Recieved files Webpage](recieved-file-cloudinary-Node.js.png?raw=true "Uploader Webpage")
-
 And that is all!
 Feel free to contribute to the repository as you see well through [discussions](https://github.com/RisoriTofa/Cloudinary-uploader-Node.js/discussions) or add new [issues](https://github.com/RisoriTofa/Cloudinary-uploader-Node.js/issues).
 

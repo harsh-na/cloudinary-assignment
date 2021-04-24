@@ -19,4 +19,8 @@ Generate fake data using Faker.js in a Node application. You can use this reposi
 **Main Webpage**
 ![Main Webpage](uploader-landing-page.png?raw=true "Uploader Webpage")
 
+**Recieved files Webpage**
+![Recieved files Webpage](recieved-file-cloudinary-Node.js.png?raw=true "Uploader Webpage")
+
+
 View the steps in the webpage found [here](https://justusmbuvi.github.io/Faker.js-node-application/).

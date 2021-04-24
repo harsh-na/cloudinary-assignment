@@ -14,6 +14,7 @@ You can use it as a template for your project as you would like.
 - [Clone the repository](#Clone-the-repository)
 - [Install the dependencies](#Install-the-dependencies)
 - [Configuring package.json](#Configuring-package.json)
+- [Configure "_.env_" file](#Configure-"_.env_"-file)
 - [Run the project](#Run-the-project)
 - [Output](#Output)
 
@@ -88,6 +89,10 @@ Now open the "package.json" file and configure it so that you can start the appl
     }
 }
 ```
+
+### Configure "_.env_" file
+
+Add your credentials to the "_.env_" file and save it.
 
 ### Run the project
 

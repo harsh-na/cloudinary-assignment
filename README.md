@@ -13,6 +13,10 @@ You can use it as a template for your project as you would like.
 - Run the project
 
 ## Results
+
+**Cloudinary Dashboard**
+![Cloudinary Dashboard Webpage](cloudinary-dashboard.png?raw=true "Uploader Webpage")
+
 **Main Webpage**
 ![Main Webpage](uploader-landing-page.png?raw=true "Uploader Webpage")
 

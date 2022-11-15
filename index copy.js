@@ -2,12 +2,15 @@
 const http = require('http');
 const util = require('util');
 
+// https://github.com/node-formidable/node-formidable
 const Formidable = require('formidable');
 
+//https://www.npmjs.com/package/dotenv
 const cloudinary = require("cloudinary");
 require('dotenv').config()
 
-
+// Cloudinary configuration settings
+// This will be fetched from the .env file in the root directory
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
@@ -23,7 +26,8 @@ http.createServer((req, res) => {
 
         form.parse(req, (err, fields, files) => {
 
-            
+            // Find Cloudinary documentation using the link below
+            // https://cloudinary.com/documentation/upload_images
             cloudinary.uploader.upload(files.upload.path, result => {
 
                 console.log(result)
@@ -62,8 +66,6 @@ http.createServer((req, res) => {
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
 
         <!-- Custom CSS -->
         <style>
@@ -108,32 +110,8 @@ http.createServer((req, res) => {
           <!-- Form end.//-->
         </div>
      <!--container end.//-->
-
     </body>
 
-
-
- <button id="upload_widget" class="cloudinary-button">Upload Video Files</button>
-
-    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>  
-    <script src="https://api.cloudinary.com/v1_1/<dfmqa1bkq>/<video>/upload"></script>  
-    
-    <script type="text/javascript">  
-    var myWidget = cloudinary.createUploadWidget({
-      cloudName: 'dfmqa1bkq', 
-      uploadPreset: 'cloudinary_project'}, (error, result) => { 
-        if (!error && result && result.event === "success") { 
-          console.log('Done! Here is the image info: ', result.info); 
-        }
-      }
-    )
-    
-    document.getElementById("upload_widget").addEventListener("click", function(){
-        myWidget.open();
-      }, false);
-    </script>
-
-    
 </html>
 `);
     // Port number

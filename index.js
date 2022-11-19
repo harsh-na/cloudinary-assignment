@@ -1,56 +1,63 @@
 // Required modules
-const http = require('http');
-const util = require('util');
+const http = require("http");
+const util = require("util");
+const express = require('express')
 
-const Formidable = require('formidable');
+const Formidable = require("formidable");
 
+const app = express()
 const cloudinary = require("cloudinary");
-require('dotenv').config()
+require("dotenv").config();
 
-
+const port = process.env.PORT || 5000
 cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.API_KEY,
-    api_secret: process.env.API_SECRET
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
 });
 
 //Create a server
-http.createServer((req, res) => {
-    if (req.url === '/upload' && req.method.toLowerCase() === 'post') {
+const server=http
+  .createServer((req, res) => {
+    if (req.url === "/upload" && req.method.toLowerCase() === "post") {
+      // parse a file upload
+      const form = new Formidable();
 
-        // parse a file upload
-        const form = new Formidable();
-
-        form.parse(req, (err, fields, files) => {
-
-            
-            cloudinary.uploader.upload(files.upload.path, result => {
-
-                console.log(result)
-                if (result.public_id) {
-                    res.writeHead(200, { 'content-type': 'text/plain' });
-                    res.write('received uploads:\n\n');
-                    res.end(util.inspect({ fields: fields, files: files }));
-                }
-            });
+      form.parse(req, (err, fields, files) => {
+        cloudinary.uploader.upload(files.upload.path, (result) => {
+          console.log(result);
+          if (result.public_id) {
+            res.writeHead(200, { "content-type": "text/plain" });
+            res.write("received uploads:\n\n");
+            res.end(util.inspect({ fields: fields, files: files }));
+          }
         });
-        return;
+      });
+      return;
     }
 
     cloudinary.v2.uploader
-.upload("dog.mp4", 
-  { resource_type: "video", 
-    public_id: "myfolder/mysubfolder/dog_closeup",
-    chunk_size: 6000000,
-    eager: [
-      { width: 300, height: 300, crop: "pad", audio_codec: "none" }, 
-      { width: 160, height: 100, crop: "crop", gravity: "south", audio_codec: "none" } ],                                   
-    eager_async: true,
-    eager_notification_url: "https://mysite.example.com/notify_endpoint" })
-.then(result=>console.log(result));
+      .upload("dog.mp4", {
+        resource_type: "video",
+        public_id: "myfolder/mysubfolder/dog_closeup",
+        chunk_size: 6000000,
+        eager: [
+          { width: 300, height: 300, crop: "pad", audio_codec: "none" },
+          {
+            width: 160,
+            height: 100,
+            crop: "crop",
+            gravity: "south",
+            audio_codec: "none",
+          },
+        ],
+        eager_async: true,
+        eager_notification_url: "https://mysite.example.com/notify_endpoint",
+      })
+      .then((result) => console.log(result));
 
     // show a file upload form
-    res.writeHead(200, { 'content-type': 'text/html' });
+    res.writeHead(200, { "content-type": "text/html" });
     res.end(`<!doctype html>
     <html lang="en">
 
@@ -137,4 +144,9 @@ http.createServer((req, res) => {
 </html>
 `);
     // Port number
-}).listen(5000);
+  })
+  // .listen(5000);
+
+  server.listen(port, () => {
+    console.log(`Server is up on port ${port}!`)
+})
